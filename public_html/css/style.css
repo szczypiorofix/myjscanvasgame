@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+    body {
+        background-color: #333;
+    }
+
+    .maindiv {
+        width: 800px;
+        margin: 0 auto;
+        background-color: #222;
+        padding: 10px;
+    }
+    
+    .myCanvas {
+        width: 100%;
+        height: 100%;
+    }
+    
+    .dontshow {
+        display: none;
+    }
