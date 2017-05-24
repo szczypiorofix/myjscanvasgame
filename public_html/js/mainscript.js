@@ -1,6 +1,66 @@
     function e(element) {
         return document.getElementById(element);
     }
+    
+
+    
+    var canvas = null;
+    var GameCanvas = {
+        canvas : null,
+        context : null,
+        
+        create : function(tag) {
+            this.canvas = e(tag);
+            this.context = this.canvas.getContext('2d');
+            return this.context;
+        }
+    };
+    
+    var Sprite = function(filename, is_pattern) {
+      
+        // Construct
+        this.image = null;
+        this.pattern = null;
+        this.TO_RADIANS = Math.PI / 180;
+
+        if (filename != undefined && filename != '' && filename != null) {
+            this.image = new Image();
+            this.image.src = filename;
+        }
+
+        if (is_pattern) {
+            this.pattern = GameCanvas.context.createPattern(this.image, 'repeat');
+        }
+        else {
+            console.log('Unable to load sprite.');
+        }
+
+        this.draw = function(x, y, w, h) {
+            if (this.pattern != null) {
+                GameCanvas.context.fillStyle = this.pattern;
+                GameCanvas.context.fillRect(x, y, w, h);
+            }
+            else {
+                // Image
+                if (w != undefined || h != undefined) {
+                    GameCanvas.context.drawImage(this.image, x, y, this.image.width, this.image.height);
+                }
+                else { // Stretched
+                    GameCanvas.context.drawImage(this.image, x, y, w, h);
+                }
+            }
+        };
+        
+        this.rotate = function(x, y, angle) {
+            GameCanvas.context.save();
+            GameCanvas.context.translate(x, y);
+            GameCanvas.context.rotate(angle * this.TO_RADIANS);
+            GameCanvas.context.drawImage(this.image, -(this.image.width/2), -(this.image.height/2));
+            GameCanvas.context.restore();
+        };
+    };
+    
+    
 
     var FPS = 60;
     var canvas;
@@ -71,19 +131,7 @@
         update();
         draw();
         requestAnimationFrame(mainLoop);
-    }
-    
-    
-    window.onload = function() {
-        canvas = e('gameCanvas');
-        canvasContext = canvas.getContext('2d');
-        
-        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-        requestAnimationFrame(mainLoop);
-        
-        //setInterval(function() { mainLoop(); }, 1000 / FPS);
-    };
-    
+    }    
     
     function update() {
         
@@ -127,11 +175,32 @@
     
     function draw() {    
         // BACKGROUND
-        //drawRect(0, 0, canvas.width, canvas.height, '#111');
         drawBackground();
         
         // PLAYER
-        //drawRect(ballX, ballY, ballSize, ballSize, 'blue');
-        //drawPlayer(ballX, ballY);
         playerAnim.drawAnimation(canvasContext, ballX, ballY);
     }
+    
+    window.onload = function() {
+
+
+//            canvas = e('gameCanvas');
+//            canvasContext = canvas.getContext('2d');
+//
+//            var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+//            requestAnimationFrame(mainLoop);
+
+        //setInterval(function() { mainLoop(); }, 1000 / FPS);
+    };
+    
+     document.addEventListener("DOMContentLoaded", function(event) {
+        GameCanvas.create('gameCanvas');
+        
+         //GameCanvas.context.fillStyle = 'red';
+         //GameCanvas.context.fillRect(50, 50, 100, 100);
+         
+        var player = 'images/Idle01R.png';
+        var image = new Sprite(player, false);
+       
+        image.draw(100, 100, 50, 50); 
+    });
