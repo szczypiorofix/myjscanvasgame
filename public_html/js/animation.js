@@ -6,13 +6,12 @@ function Animation(images, speed) {
     this.currentFrameStep = 0;
     this.currentFrame = new Image();
     this.frames = [];
-    
-    this.setFrames = function() {
-        for (i = 0; i < this.images.length; i++) {
-            this.frames[i] = new Image();
-            this.frames[i] = this.images[i];
-        }
-    };
+
+
+    for (i = 0; i < this.images.length; i++) {
+        this.frames[i] = new Image();
+        this.frames[i] = this.images[i];
+    }
     
     this.nextStep = function() {
         

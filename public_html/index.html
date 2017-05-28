@@ -5,34 +5,29 @@
         <META HTTP-EQUIV="Content-Type" content="text/html; charset=utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Wróblewski Piotr, 'Canvas Game'">
+        <meta name="description" content="Wróblewski Piotr, 'Space Invades - JS game'">
         <meta name="author" content="Wróblewski Piotr">
         <meta property="og:title" content="Wróblewski Piotr">
         <meta property="og:image" content="https://wroblewskipiotr.pl/furyroad/furyroad.png">
-        <meta property="og:description" content="Wróblewski Piotr, 'Canvas Game'">
-        <title>My JS canvas game</title>
+        <meta property="og:description" content="Wróblewski Piotr, 'Space Invades - JS game'">
+        <title>Space Invades - JS game</title>
         <link rel="stylesheet" href="css/style.css">
         <link rel="icon" href="icon.png">
     </head>
     <body>
-        <img src="images/Idle00R.png" alt="Player image" id="idle00R" class="dontshow"/>
-        <img src="images/Idle01R.png" alt="Player image" id="idle01R" class="dontshow"/>
-        <img src="images/Idle02R.png" alt="Player image" id="idle02R" class="dontshow"/>
-        <img src="images/Idle03R.png" alt="Player image" id="idle03R" class="dontshow"/>
-        <img src="images/Idle04R.png" alt="Player image" id="idle04R" class="dontshow"/>
-        <img src="images/Idle05R.png" alt="Player image" id="idle05R" class="dontshow"/>
-        <img src="images/Idle06R.png" alt="Player image" id="idle06R" class="dontshow"/>
-        <img src="images/Idle07R.png" alt="Player image" id="idle07R" class="dontshow"/>
-        <img src="images/Idle08R.png" alt="Player image" id="idle08R" class="dontshow"/>
-        <img src="images/Idle09R.png" alt="Player image" id="idle09R" class="dontshow"/>
-        <img src="images/bg.png" alt="Background image" id="background" class="dontshow"/>
+        
         <div class="maindiv">
-            <canvas id="gameCanvas" class="myCanvas" width="800" height="600">
-                
-            </canvas>
+            <canvas id="gameCanvas" class="myCanvas" width="800" height="600"></canvas>
         </div>
         
+        <script src="js/require.js"></script>
+        <script src="js/sprite.js"></script>
+        <script src="js/input.js"></script>
+        <script src="js/player.js"></script>
+        <script src="js/alien.js"></script>
+        <script src="js/bullet.js"></script>
+        <script src="js/gamemanager.js"></script>
         <script src="js/animation.js"></script>
-        <script src="js/mainscript.js"></script>       
+        <script src="js/mainscript.js"></script>
     </body>
 </html>
