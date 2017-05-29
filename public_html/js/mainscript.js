@@ -57,11 +57,35 @@
     
     window.onload = function() {                
 
-            GameCanvas.create('gameCanvas');
+
+
+        var stage = new PIXI.Container(),
+            renderer = PIXI.autoDetectRenderer(256, 256);
+        document.body.appendChild(renderer.view);
+
+        //Use Pixi's built-in `loader` object to load an image
+        PIXI.loader
+          .add("images/spaceship.png")
+          .load(setup);
+
+        //This `setup` function will run when the image has loaded
+        function setup() {
+
+          //Create the `cat` sprite from the texture
+          var cat = new PIXI.Sprite(
+            PIXI.loader.resources["images/spaceship.png"].texture
+          );
+
+          stage.addChild(cat);
+
+          renderer.render(stage);
+        }
+
+            //GameCanvas.create('gameCanvas');
             
-            gameManager.loadLevel(1);
+            //gameManager.loadLevel(1);
             
-            var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-            requestAnimationFrame(mainLoop);
+            //var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+            //requestAnimationFrame(mainLoop);
     };
     
